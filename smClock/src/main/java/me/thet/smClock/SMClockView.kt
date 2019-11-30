@@ -33,8 +33,8 @@ class SMClockView @JvmOverloads constructor(
     private val mScaleDensity: Float
     private var mDefPadding: Float = 0f
 
-    val sunDrawable: Drawable
-    val moonDrawable: Drawable
+    var sunDrawable: Drawable
+    var moonDrawable: Drawable
     var mCurrentDrawable: Drawable
 
     val mPositionIconRect: Rect
@@ -71,17 +71,34 @@ class SMClockView @JvmOverloads constructor(
     private var mSunPositionCal: SunPositionCalculator
 
     private lateinit var mClockTime: String
-    private lateinit var mClockLabel: String
+    private var mClockLabel: String
 
+    private var mLargeCircleColor: Int
+    private var mClockColor: Int
+    private var mClockSubLabelColor: Int
+    private var mSmallCircleColor: Int
+    private var mDashLineColor: Int
 
     init {
+
+        sunDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sun)!!
+        moonDrawable = ContextCompat.getDrawable(context, R.drawable.ic_moon)!!
+
+
+        mLargeCircleColor = getColor(R.color.primaryWhite)
+        mClockColor = getColor(R.color.primaryWhite)
+        mClockSubLabelColor = getColor(R.color.primaryWhite)
+        mSmallCircleColor = getColor(R.color.primaryWhite)
+        mDashLineColor = getColor(R.color.primaryWhiteTransparent)
+
+        mClockLabel = ""
+
+        retrieveAttrs(attrs)
+
 
         mDensity = getContext().resources.displayMetrics.density
         mScaleDensity = getContext().resources.displayMetrics.scaledDensity
 
-
-        sunDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sun)!!
-        moonDrawable = ContextCompat.getDrawable(context, R.drawable.ic_moon)!!
 
         mCurrentDrawable = sunDrawable
 
@@ -98,12 +115,12 @@ class SMClockView @JvmOverloads constructor(
         mPositionIconBaseRect = RectF()
 
         mBaseCirclePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = getColor(R.color.primaryWhite)
+            color = mLargeCircleColor
             style = Paint.Style.STROKE
         }
 
         mDashLinePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = getColor(R.color.primaryWhiteInactive)
+            color = mDashLineColor
             style = Paint.Style.STROKE
             strokeWidth = dp(2f)
             pathEffect = DashPathEffect(floatArrayOf(dp(1f), dp(2f), dp(1f)), 0f)
@@ -111,18 +128,18 @@ class SMClockView @JvmOverloads constructor(
 
 
         mClockPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = getColor(R.color.primaryWhite)
+            color = mClockColor
             typeface = mTypeFace
 
         }
 
         mClockLabelPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = getColor(R.color.primaryWhite)
+            color = mClockSubLabelColor
             typeface = mTypeFace
         }
 
         mPositionBasePaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = getColor(R.color.primaryWhite)
+            color = mSmallCircleColor
             style = Paint.Style.FILL_AND_STROKE
         }
 
@@ -132,6 +149,36 @@ class SMClockView @JvmOverloads constructor(
         )
 
 
+    }
+
+    private fun retrieveAttrs(attrs: AttributeSet?) {
+        context.theme.obtainStyledAttributes(attrs, R.styleable.SMClockView, 0, 0).apply {
+            try {
+                sunDrawable = getDrawable(R.styleable.SMClockView_sm_sun_icon) ?: sunDrawable
+                moonDrawable = getDrawable(R.styleable.SMClockView_sm_moon_icon) ?: moonDrawable
+
+                mLargeCircleColor =
+                    getColor(R.styleable.SMClockView_sm_large_circle_color, mLargeCircleColor)
+
+                mSmallCircleColor =
+                    getColor(R.styleable.SMClockView_sm_small_circle_color, mSmallCircleColor)
+
+
+                mDashLineColor =
+                    getColor(R.styleable.SMClockView_sm_dash_line_color, mDashLineColor)
+
+                mClockColor = getColor(R.styleable.SMClockView_sm_clock_color, mClockColor)
+
+                mClockSubLabelColor =
+                    getColor(R.styleable.SMClockView_sm_clock_sub_label_color, mClockSubLabelColor)
+
+                mClockLabel = getString(R.styleable.SMClockView_sm_clock_sub_label) ?: mClockLabel
+
+
+            } finally {
+                recycle()
+            }
+        }
     }
 
 
@@ -285,7 +332,6 @@ class SMClockView @JvmOverloads constructor(
     private fun drawClockText(canvas: Canvas, pCenter: PointF, radius: Float) {
 
         mClockTime = getCurrentTimeIn12HourFormat()
-        mClockLabel = "LABEL"
 
         val cx = pCenter.x
         val cy = pCenter.y
@@ -387,6 +433,7 @@ class SMClockView @JvmOverloads constructor(
 
             invalidate()
         }
-
     }
+
+
 }

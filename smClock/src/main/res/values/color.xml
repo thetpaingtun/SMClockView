@@ -2,11 +2,8 @@
 <resources>
 
 
-  <color name="primaryBlack">#081319</color>
-  <color name="primaryGreen">#1CE072</color>
-  <color name="primaryGreenInactive">#6A1CE072</color>
-  <!--    <color name="primaryWhite">#FAFAE9</color>-->
-  <color name="primaryWhite">#ffffff</color>
-  <color name="primaryWhiteInactive">#40FFFFFF</color>
+    <!--    <color name="primaryWhite">#FAFAE9</color>-->
+    <color name="primaryWhite">#ffffff</color>
+    <color name="primaryWhiteTransparent">#40FFFFFF</color>
 
 </resources>
