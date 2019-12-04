@@ -84,7 +84,12 @@ class SMClockView @JvmOverloads constructor(
 
     private var mAnimationDuration: Int = DEFAULT_ANIMATION_DURATION
 
+    private var mTimeReceiver: TimeTickReceiver
+
+
     init {
+
+        mTimeReceiver = TimeTickReceiver()
 
         sunDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sun)!!
         moonDrawable = ContextCompat.getDrawable(context, R.drawable.ic_moon)!!
@@ -320,7 +325,7 @@ class SMClockView @JvmOverloads constructor(
 
     private fun startClockTicking() {
         val intentFilter = IntentFilter(Intent.ACTION_TIME_TICK)
-        context.registerReceiver(TimeTickReceiver(), intentFilter)
+        context.registerReceiver(mTimeReceiver, intentFilter)
     }
 
     private fun resolvePaddingSizes() {
@@ -467,6 +472,15 @@ class SMClockView @JvmOverloads constructor(
         super.onAttachedToWindow()
         startPositionAnimation()
 
+    }
+
+    override fun onDetachedFromWindow() {
+        super.onDetachedFromWindow()
+        unregisterTimeReceiver()
+    }
+
+    private fun unregisterTimeReceiver() {
+        context.unregisterReceiver(mTimeReceiver)
     }
 
     inner class TimeTickReceiver : BroadcastReceiver() {

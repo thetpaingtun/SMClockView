@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
 
 
-        smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(18, 57))
+        smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(21, 30))
     }
 
 }
