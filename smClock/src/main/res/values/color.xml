@@ -6,4 +6,7 @@
     <color name="primaryWhite">#ffffff</color>
     <color name="primaryWhiteTransparent">#40FFFFFF</color>
 
+    <color name="primaryDark">#010101</color>
+    <color name="primaryDarkTransparent">#40010101</color>
+
 </resources>

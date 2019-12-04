@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/black"
+    android:background="@color/bgColor"
     android:orientation="vertical"
     tools:context="me.thet.smClock.sample.MainActivity">
 
@@ -17,18 +17,18 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="48dp"
         android:layerType="software"
-        app:sm_clock_color="@color/primaryWhite"
+        app:sm_clock_color="@color/primaryDark"
         app:sm_clock_sub_label="CLOCK"
-        app:sm_clock_sub_label_color="@color/primaryWhite"
-        app:sm_dash_line_color="@color/primaryWhiteTransparent"
+        app:sm_clock_sub_label_color="@color/primaryDark"
+        app:sm_dash_line_color="@color/primaryDarkTransparent"
         app:sm_day_break_hour="5"
         app:sm_day_break_min="30"
         app:sm_icon_size="24dp"
-        app:sm_large_circle_color="@color/primaryWhite"
+        app:sm_large_circle_color="@color/primaryDark"
         app:sm_moon_icon="@drawable/ic_moon"
         app:sm_night_fall_hour="18"
         app:sm_night_fall_min="20"
-        app:sm_small_circle_color="@color/primaryWhite"
+        app:sm_small_circle_color="@color/primaryDark"
         app:sm_sun_icon="@drawable/ic_sun" />
 
-</LinearLayout>
+</FrameLayout>
