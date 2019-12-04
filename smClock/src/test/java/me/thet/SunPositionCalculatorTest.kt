@@ -1,8 +1,8 @@
 package com.gmail.thetpaingtun93.myanmarprayertime
 
-import com.gmail.thetpaingtun93.myanmarprayertime.newMain.sunPosition.HourMin
-import com.gmail.thetpaingtun93.myanmarprayertime.newMain.sunPosition.SunPositionCalculator
 import junit.framework.Assert.assertTrue
+import me.thet.smClock.HourMin
+import me.thet.smClock.SunPositionCalculator
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertFalse
 import org.junit.Before

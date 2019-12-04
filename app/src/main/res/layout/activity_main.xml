@@ -20,6 +20,7 @@
         app:sm_clock_sub_label="CLOCK"
         app:sm_clock_sub_label_color="@color/primaryWhite"
         app:sm_dash_line_color="@color/primaryWhiteTransparent"
+        app:sm_icon_size="24dp"
         app:sm_large_circle_color="@color/primaryWhite"
         app:sm_moon_icon="@drawable/ic_moon"
         app:sm_small_circle_color="@color/primaryWhite"

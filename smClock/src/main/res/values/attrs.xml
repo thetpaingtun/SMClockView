@@ -3,6 +3,7 @@
     <declare-styleable name="SMClockView">
         <attr name="sm_sun_icon" format="reference" />
         <attr name="sm_moon_icon" format="reference" />
+        <attr name="sm_icon_size" format="dimension" />
         <attr name="sm_large_circle_color" format="color" />
         <attr name="sm_small_circle_color" format="color" />
         <attr name="sm_dash_line_color" format="color" />

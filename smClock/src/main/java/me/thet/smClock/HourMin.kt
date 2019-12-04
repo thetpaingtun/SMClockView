@@ -72,7 +72,12 @@ data class HourMin(var hour: Int, var min: Int) : Comparable<HourMin> {
             hourStr = "0$hour"
         }
 
-        return "$hourStr:$min $postfix"
+        var minStr = "$min"
+        if (min < 10) {
+            minStr = "0$min"
+        }
+
+        return "$hourStr:$minStr $postfix"
 
     }
 

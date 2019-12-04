@@ -37,6 +37,7 @@ class SMClockView @JvmOverloads constructor(
     var moonDrawable: Drawable
     var mCurrentDrawable: Drawable
 
+
     val mPositionIconRect: Rect
     val mPositionIconBaseRect: RectF
     private var mPositionIconSize: Float = 0f
@@ -174,6 +175,9 @@ class SMClockView @JvmOverloads constructor(
 
                 mClockLabel = getString(R.styleable.SMClockView_sm_clock_sub_label) ?: mClockLabel
 
+                mPositionIconSize = getDimension(R.styleable.SMClockView_sm_icon_size, 0f)
+
+                Logger.log("icon size => " + mPositionIconSize)
 
             } finally {
                 recycle()
@@ -283,7 +287,10 @@ class SMClockView @JvmOverloads constructor(
         mClockDigitLabelSpace = dp(RATIO_CLOCK_DIGIT_LABEL_SPACE * minCanvasSize)
 
 
-        mPositionIconSize = dp(RATIO_POSITION_ICON * minCanvasSize)
+        mPositionIconSize =
+            if (mPositionIconSize == 0f) dp(RATIO_POSITION_ICON * minCanvasSize) else mPositionIconSize
+
+
         mPositionIconBaseSize = POSITION_BASE_RATIO_TO_ICON * mPositionIconSize
 
         val positionIconBaseHalfSize = mPositionIconBaseSize / 2f

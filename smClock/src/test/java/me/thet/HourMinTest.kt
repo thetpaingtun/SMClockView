@@ -1,6 +1,6 @@
 package com.gmail.thetpaingtun93.myanmarprayertime
 
-import com.gmail.thetpaingtun93.myanmarprayertime.newMain.sunPosition.HourMin
+import me.thet.smClock.HourMin
 import org.junit.Assert.*
 import org.junit.Ignore
 import org.junit.Test
@@ -72,6 +72,7 @@ class HourMinTest {
         val d3 = HourMin(16, 34)
         val d4 = HourMin(23, 22)
         val d5 = HourMin(3, 37)
+        val d6 = HourMin(3, 7)
 
 
 
@@ -80,6 +81,7 @@ class HourMinTest {
         assertEquals("04:34 PM", d3.formatIn12Hour())
         assertEquals("11:22 PM", d4.formatIn12Hour())
         assertEquals("03:37 AM", d5.formatIn12Hour())
+        assertEquals("03:07 AM", d6.formatIn12Hour())
 
 
     }
