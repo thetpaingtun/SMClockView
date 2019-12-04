@@ -1,4 +1,5 @@
 # SMClockView
 Clock that show current sun or moon position
 
-![](sm.gif)
+<img src="sm.gif" height="550" width="300"/>
+
