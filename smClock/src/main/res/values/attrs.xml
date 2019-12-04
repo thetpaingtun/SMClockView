@@ -10,6 +10,11 @@
         <attr name="sm_clock_color" format="color" />
         <attr name="sm_clock_sub_label_color" format="color" />
         <attr name="sm_clock_sub_label" format="string" />
+        <attr name="sm_day_break_hour" format="integer" />
+        <attr name="sm_day_break_min" format="integer" />
+        <attr name="sm_night_fall_hour" format="integer" />
+        <attr name="sm_night_fall_min" format="integer" />
+        <attr name="sm_total_animation_duration" format="integer" />
     </declare-styleable>
 
 </resources>

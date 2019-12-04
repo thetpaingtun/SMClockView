@@ -15,6 +15,7 @@ import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
+import java.lang.RuntimeException
 import kotlin.math.roundToInt
 
 
@@ -24,6 +25,7 @@ class SMClockView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    private val DEFAULT_ANIMATION_DURATION = 2000
     private var mDashLinePaint: Paint
     private val mBaseCirclePaint: Paint
     private val mClockPaint: Paint
@@ -33,13 +35,13 @@ class SMClockView @JvmOverloads constructor(
     private val mScaleDensity: Float
     private var mDefPadding: Float = 0f
 
-    var sunDrawable: Drawable
-    var moonDrawable: Drawable
-    var mCurrentDrawable: Drawable
+    private var sunDrawable: Drawable
+    private var moonDrawable: Drawable
+    private var mCurrentDrawable: Drawable
 
 
-    val mPositionIconRect: Rect
-    val mPositionIconBaseRect: RectF
+    private val mPositionIconRect: Rect
+    private val mPositionIconBaseRect: RectF
     private var mPositionIconSize: Float = 0f
     private var mPositionIconBaseSize: Float = 0f
     private var mClockDigitLabelSpace: Float = 0f
@@ -79,6 +81,8 @@ class SMClockView @JvmOverloads constructor(
     private var mClockSubLabelColor: Int
     private var mSmallCircleColor: Int
     private var mDashLineColor: Int
+
+    private var mAnimationDuration: Int = DEFAULT_ANIMATION_DURATION
 
     init {
 
@@ -177,12 +181,49 @@ class SMClockView @JvmOverloads constructor(
 
                 mPositionIconSize = getDimension(R.styleable.SMClockView_sm_icon_size, 0f)
 
-                Logger.log("icon size => " + mPositionIconSize)
+
+                dayBreakHour = getInteger(R.styleable.SMClockView_sm_day_break_hour, dayBreakHour)
+                daybreakMin = getInteger(R.styleable.SMClockView_sm_day_break_min, daybreakMin)
+                nightFallHour =
+                    getInteger(R.styleable.SMClockView_sm_night_fall_hour, nightFallHour)
+                nightFallMin = getInteger(R.styleable.SMClockView_sm_night_fall_min, nightFallMin)
+
+                mAnimationDuration =
+                    getInteger(
+                        R.styleable.SMClockView_sm_total_animation_duration,
+                        DEFAULT_ANIMATION_DURATION
+                    );
+
+                validateHourMin()
+
 
             } finally {
                 recycle()
             }
         }
+    }
+
+    private fun validateHourMin() {
+        if (dayBreakHour < 0 || dayBreakHour > 23) {
+            throw RuntimeException("Daybreak hour should be between 0 and 23")
+        }
+
+        if (nightFallHour < 0 || nightFallHour > 23) {
+            throw RuntimeException("Night fall hour should be between 0 and 23")
+        }
+
+        if (daybreakMin < 0 || daybreakMin > 59) {
+            throw RuntimeException("Daybreak hour should be between 0 and 59")
+        }
+
+        if (nightFallMin < 0 || nightFallMin > 59) {
+            throw RuntimeException("Night fall min should be between 0 and 50")
+        }
+
+        mSunPositionCal = SunPositionCalculator(
+            HourMin(dayBreakHour, daybreakMin),
+            HourMin(nightFallHour, nightFallMin)
+        )
     }
 
 
@@ -224,11 +265,14 @@ class SMClockView @JvmOverloads constructor(
 
     private fun startPositionAnimation() {
 
-        val endAngle = 180 - getCurrentEndAngle()
+        val currentAngle = getCurrentEndAngle()
+        val endAngle = 180 - currentAngle
+
+        val duration = (mAnimationDuration * (currentAngle / 360)).toLong()
 
         val animator: ValueAnimator = ValueAnimator.ofFloat(POSITIONAL_START_ANGLE, endAngle)
 
-        animator.setDuration(2000)
+        animator.setDuration(duration)
         animator.addUpdateListener { animation ->
             Log.d("ANIM", "animated value => " + animation.getAnimatedValue())
 
@@ -443,4 +487,14 @@ class SMClockView @JvmOverloads constructor(
     }
 
 
+    fun setDayBreakAndNightFallHourMin(daybreak: HourMin, nightFall: HourMin) {
+        dayBreakHour = daybreak.hour
+        daybreakMin = daybreak.min
+
+        nightFallHour = nightFall.hour
+        nightFallMin = nightFall.min
+
+        validateHourMin()
+        startPositionAnimation()
+    }
 }
