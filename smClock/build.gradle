@@ -41,7 +41,7 @@ publish {
     repoName = "SMClockView"
     groupId = "me.thet.smClock"
     artifactId = "SMClockView"
-    publishVersion = "0.0.1"
+    publishVersion = "1.0.0"
     desc = "A clock view that show current sun or moon position"
     website = "https://github.com/thetpaingtun/SMClockView"
 
