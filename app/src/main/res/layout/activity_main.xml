@@ -25,10 +25,11 @@
         app:sm_day_break_min="30"
         app:sm_icon_size="24dp"
         app:sm_large_circle_color="@color/primaryDark"
-        app:sm_moon_icon="@drawable/ic_moon"
+        app:sm_moon_icon="@drawable/ic_sm_moon"
         app:sm_night_fall_hour="18"
         app:sm_night_fall_min="20"
         app:sm_small_circle_color="@color/primaryDark"
-        app:sm_sun_icon="@drawable/ic_sun" />
+        app:sm_sun_icon="@drawable/ic_sm_sun" />
+
 
 </FrameLayout>

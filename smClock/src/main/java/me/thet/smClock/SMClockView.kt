@@ -65,11 +65,11 @@ class SMClockView @JvmOverloads constructor(
     private var mPositionalIconPosition: Float = 0f
     private val POSITIONAL_START_ANGLE = 180f
 
-    private var dayBreakHour: Int = 4
+    private var dayBreakHour: Int = 5
     private var daybreakMin: Int = 30
 
-    private var nightFallHour: Int = 17
-    private var nightFallMin: Int = 57
+    private var nightFallHour: Int = 18
+    private var nightFallMin: Int = 30
 
     private var mSunPositionCal: SunPositionCalculator
 
@@ -91,15 +91,15 @@ class SMClockView @JvmOverloads constructor(
 
         mTimeReceiver = TimeTickReceiver()
 
-        sunDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sun)!!
-        moonDrawable = ContextCompat.getDrawable(context, R.drawable.ic_moon)!!
+        sunDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sm_sun)!!
+        moonDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sm_moon)!!
 
 
-        mLargeCircleColor = getColor(R.color.primaryWhite)
-        mClockColor = getColor(R.color.primaryWhite)
-        mClockSubLabelColor = getColor(R.color.primaryWhite)
-        mSmallCircleColor = getColor(R.color.primaryWhite)
-        mDashLineColor = getColor(R.color.primaryWhiteTransparent)
+        mLargeCircleColor = getColor(R.color.primaryDark)
+        mClockColor = getColor(R.color.primaryDark)
+        mClockSubLabelColor = getColor(R.color.primaryDark)
+        mSmallCircleColor = getColor(R.color.primaryDark)
+        mDashLineColor = getColor(R.color.primaryDarkTransparent)
 
         mClockLabel = ""
 
