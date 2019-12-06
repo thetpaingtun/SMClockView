@@ -1,7 +1,7 @@
 # SMClockView
 Clock that show current sun or moon position
 
-<img src="sm.gif" height="550" width="300"/>
+<img src="sm.gif" height="540" width="300"/>
 
 ## Installation
 
@@ -22,6 +22,11 @@ Add `SMClockView` widget in your view
 ```
 
 ## Customization
+
+<img src="readme1.png"/>
+
+
+
 
 | No. | XML Attribute | Default Value |
 |:---|:---|:---|
