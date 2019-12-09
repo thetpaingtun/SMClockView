@@ -20,3 +20,8 @@ android:
 
 script:
   - ./gradlew clean test --stacktrace --info
+
+ licenses:
+ - android-sdk-preview-license-.+
+ - android-sdk-license-.+
+ - google-gdk-license-.+
