@@ -29,7 +29,7 @@ before_script:
     - cp ./google-licenses/* "$ANDROID_HOME/licenses/"
 
 script:
-- "./gradlew clean build connectedCheck -PdisablePreDex --stacktrace"
+- ./gradlew clean build check --stacktrace --info
 
 
    
