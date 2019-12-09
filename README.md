@@ -1,4 +1,4 @@
-# SMClockView
+# SMClockView [![Build Status](https://travis-ci.org/thetpaingtun/SMClockView.svg?branch=master)](https://travis-ci.org/thetpaingtun/SMClockView)
 Clock that show current sun or moon position
 
 <img src="sm.gif" height="540" width="300"/>
