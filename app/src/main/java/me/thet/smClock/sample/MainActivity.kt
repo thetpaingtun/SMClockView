@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
 
 
         GlobalScope.launch(context = Dispatchers.Main) {
-            delay(1000)
-            smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(18, 20))
+            delay(300)
+            smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(18, 37))
                 .start()
         }
     }

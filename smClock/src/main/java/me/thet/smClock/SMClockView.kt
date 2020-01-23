@@ -283,9 +283,10 @@ class SMClockView @JvmOverloads constructor(
             val degree = animation.getAnimatedValue() as Float
             mPositionalIconPosition = degree
 
-            if (degree <= 0f) {
+            if (degree <= 180 && degree > 0) {
+                mCurrentDrawable = sunDrawable
+            } else {
                 mCurrentDrawable = moonDrawable
-                Logger.log("degree => 0")
             }
             invalidate()
         }
@@ -470,9 +471,6 @@ class SMClockView @JvmOverloads constructor(
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         registerTimeReceiver()
-        if (mStart) {
-            startPositionAnimation()
-        }
     }
 
     override fun onDetachedFromWindow() {
@@ -523,4 +521,13 @@ class SMClockView @JvmOverloads constructor(
         startPositionAnimation()
 
     }
+
+    override fun onVisibilityChanged(changedView: View, visibility: Int) {
+        super.onVisibilityChanged(changedView, visibility)
+        Logger.log("on visivility changed=>")
+        if (visibility == VISIBLE && mStart) {
+            startPositionAnimation()
+        }
+    }
+
 }
