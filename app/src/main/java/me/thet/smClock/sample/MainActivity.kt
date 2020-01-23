@@ -1,8 +1,12 @@
 package me.thet.smClock.sample
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.GlobalScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import me.thet.smClock.HourMin
 import me.thet.smclock.sample.R
 
@@ -13,8 +17,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
-
-//        smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(21, 30))
+        GlobalScope.launch(context = Dispatchers.Main) {
+            delay(1000)
+            smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(18, 20))
+                .start()
+        }
     }
 
 }

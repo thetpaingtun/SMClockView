@@ -29,6 +29,7 @@
         app:sm_night_fall_hour="18"
         app:sm_night_fall_min="20"
         app:sm_small_circle_color="@color/primaryDark"
+        app:sm_start_immediateley="false"
         app:sm_sun_icon="@drawable/ic_sm_sun" />
 
 

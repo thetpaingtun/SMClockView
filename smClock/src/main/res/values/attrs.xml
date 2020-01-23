@@ -15,6 +15,7 @@
         <attr name="sm_night_fall_hour" format="integer" />
         <attr name="sm_night_fall_min" format="integer" />
         <attr name="sm_total_animation_duration" format="integer" />
+        <attr name="sm_start_immediateley" format="boolean" />
     </declare-styleable>
 
 </resources>

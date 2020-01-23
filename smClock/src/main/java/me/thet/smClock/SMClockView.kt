@@ -25,6 +25,7 @@ class SMClockView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : View(context, attrs, defStyleAttr) {
 
+    private var mStart: Boolean = false
     private val DEFAULT_ANIMATION_DURATION = 2000
     private var mDashLinePaint: Paint
     private val mBaseCirclePaint: Paint
@@ -62,7 +63,7 @@ class SMClockView @JvmOverloads constructor(
     private val RATIO_CLOCK_DIGIT_LABEL_SPACE = 0.009f
     private var mTypeFace: Typeface? = null
 
-    private var mPositionalIconPosition: Float = 0f
+    private var mPositionalIconPosition: Float = 180f
     private val POSITIONAL_START_ANGLE = 180f
 
     private var dayBreakHour: Int = 5
@@ -164,6 +165,8 @@ class SMClockView @JvmOverloads constructor(
     private fun retrieveAttrs(attrs: AttributeSet?) {
         context.theme.obtainStyledAttributes(attrs, R.styleable.SMClockView, 0, 0).apply {
             try {
+                mStart = getBoolean(R.styleable.SMClockView_sm_start_immediateley, true)
+
                 sunDrawable = getDrawable(R.styleable.SMClockView_sm_sun_icon) ?: sunDrawable
                 moonDrawable = getDrawable(R.styleable.SMClockView_sm_moon_icon) ?: moonDrawable
 
@@ -470,8 +473,9 @@ class SMClockView @JvmOverloads constructor(
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
-        startPositionAnimation()
-
+        if (mStart) {
+            startPositionAnimation()
+        }
     }
 
     override fun onDetachedFromWindow() {
@@ -501,7 +505,7 @@ class SMClockView @JvmOverloads constructor(
     }
 
 
-    fun setDayBreakAndNightFallHourMin(daybreak: HourMin, nightFall: HourMin) {
+    fun setDayBreakAndNightFallHourMin(daybreak: HourMin, nightFall: HourMin): SMClockView {
         dayBreakHour = daybreak.hour
         daybreakMin = daybreak.min
 
@@ -509,6 +513,14 @@ class SMClockView @JvmOverloads constructor(
         nightFallMin = nightFall.min
 
         validateHourMin()
+
+        return this
+
+    }
+
+    fun start() {
+        mStart = true
         startPositionAnimation()
+
     }
 }
