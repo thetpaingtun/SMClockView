@@ -9,13 +9,11 @@ import android.content.IntentFilter
 import android.graphics.*
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.util.Log
 import android.view.View
 import android.view.animation.AccelerateDecelerateInterpolator
 import androidx.annotation.ColorRes
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
-import java.lang.RuntimeException
 import kotlin.math.roundToInt
 
 
@@ -158,8 +156,6 @@ class SMClockView @JvmOverloads constructor(
             HourMin(dayBreakHour, daybreakMin),
             HourMin(nightFallHour, nightFallMin)
         )
-
-
     }
 
     private fun retrieveAttrs(attrs: AttributeSet?) {
@@ -282,7 +278,7 @@ class SMClockView @JvmOverloads constructor(
 
         animator.setDuration(duration)
         animator.addUpdateListener { animation ->
-            Log.d("ANIM", "animated value => " + animation.getAnimatedValue())
+            Logger.log("animated value => " + animation.getAnimatedValue())
 
             val degree = animation.getAnimatedValue() as Float
             mPositionalIconPosition = degree

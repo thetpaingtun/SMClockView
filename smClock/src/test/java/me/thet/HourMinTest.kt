@@ -1,8 +1,8 @@
 package com.gmail.thetpaingtun93.myanmarprayertime
 
 import me.thet.smClock.HourMin
-import org.junit.Assert.*
-import org.junit.Ignore
+import org.junit.Assert.assertEquals
+import org.junit.Assert.assertTrue
 import org.junit.Test
 
 class HourMinTest {

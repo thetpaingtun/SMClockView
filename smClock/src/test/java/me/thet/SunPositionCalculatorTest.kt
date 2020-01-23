@@ -4,7 +4,6 @@ import junit.framework.Assert.assertTrue
 import me.thet.smClock.HourMin
 import me.thet.smClock.SunPositionCalculator
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
 import org.junit.Before
 import org.junit.Test
 

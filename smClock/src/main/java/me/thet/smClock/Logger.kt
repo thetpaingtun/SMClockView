@@ -5,8 +5,13 @@ import android.util.Log
 
 class Logger {
     companion object {
+        private val loggable = false
+        private val TAG = "TAG_SMCLOCK"
+
         fun log(msg: String) {
-            Log.d("PRAYER", msg)
+            if (loggable) {
+                Log.d(TAG, msg)
+            }
         }
     }
 }
