@@ -85,10 +85,13 @@ class SMClockView @JvmOverloads constructor(
 
     private var mTimeReceiver: TimeTickReceiver
 
+    private var pCenter: PointF
+
 
     init {
-
         mTimeReceiver = TimeTickReceiver()
+
+        pCenter = PointF()
 
         sunDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sm_sun)!!
         moonDrawable = ContextCompat.getDrawable(context, R.drawable.ic_sm_moon)!!
@@ -256,7 +259,8 @@ class SMClockView @JvmOverloads constructor(
         //center of available canvas
         val centerX = availableHalfW + mPaddingLeft
         val centerY = availableHalfH + mPaddingTop
-        val pCenter = PointF(centerX, centerY)
+        pCenter.x = centerX
+        pCenter.y = centerY
 
         val radius = Math.min(availableHalfW, availableHalfH)
 
