@@ -301,7 +301,7 @@ class SMClockView @JvmOverloads constructor(
             }
 
             override fun onAnimationEnd(animation: Animator) {
-                startClockTicking()
+
             }
 
             override fun onAnimationCancel(animation: Animator?) {
@@ -326,7 +326,7 @@ class SMClockView @JvmOverloads constructor(
         return mSunPositionCal.getCurrentPeriod(HourMin.currentHourMin)
     }
 
-    private fun startClockTicking() {
+    private fun registerTimeReceiver() {
         val intentFilter = IntentFilter(Intent.ACTION_TIME_TICK)
         context.registerReceiver(mTimeReceiver, intentFilter)
     }
@@ -473,6 +473,7 @@ class SMClockView @JvmOverloads constructor(
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        registerTimeReceiver()
         if (mStart) {
             startPositionAnimation()
         }
@@ -489,6 +490,9 @@ class SMClockView @JvmOverloads constructor(
 
     inner class TimeTickReceiver : BroadcastReceiver() {
         override fun onReceive(context: Context?, intent: Intent?) {
+            if (!mStart) {
+                return
+            }
 
             val delta = getCurrentDegreePerMin()
             val period = getCurrentPeriod()
