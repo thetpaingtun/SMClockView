@@ -16,12 +16,14 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+    }
 
+    override fun onResume() {
+        super.onResume()
         GlobalScope.launch(context = Dispatchers.Main) {
             delay(300)
             smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(18, 37))
                 .start()
         }
     }
-
 }

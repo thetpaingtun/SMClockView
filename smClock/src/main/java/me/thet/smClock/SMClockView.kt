@@ -24,6 +24,7 @@ class SMClockView @JvmOverloads constructor(
 ) : View(context, attrs, defStyleAttr) {
 
     private var mStart: Boolean = false
+    private var mStartImmediately = false
     private val DEFAULT_ANIMATION_DURATION = 2000
     private var mDashLinePaint: Paint
     private val mBaseCirclePaint: Paint
@@ -164,7 +165,7 @@ class SMClockView @JvmOverloads constructor(
     private fun retrieveAttrs(attrs: AttributeSet?) {
         context.theme.obtainStyledAttributes(attrs, R.styleable.SMClockView, 0, 0).apply {
             try {
-                mStart = getBoolean(R.styleable.SMClockView_sm_start_immediateley, true)
+                mStartImmediately = getBoolean(R.styleable.SMClockView_sm_start_immediateley, true)
 
                 sunDrawable = getDrawable(R.styleable.SMClockView_sm_sun_icon) ?: sunDrawable
                 moonDrawable = getDrawable(R.styleable.SMClockView_sm_moon_icon) ?: moonDrawable
@@ -529,8 +530,12 @@ class SMClockView @JvmOverloads constructor(
     override fun onVisibilityChanged(changedView: View, visibility: Int) {
         super.onVisibilityChanged(changedView, visibility)
         Logger.log("on visivility changed=>")
-        if (visibility == VISIBLE && mStart) {
-            startPositionAnimation()
+        if (visibility == VISIBLE) {
+            if (mStartImmediately) {
+                start()
+            } else {
+                mStart = false
+            }
         }
     }
 
