@@ -8,6 +8,7 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import me.thet.smClock.HourMin
+import me.thet.smClock.Logger
 import me.thet.smclock.sample.R
 
 class MainActivity : AppCompatActivity() {
@@ -23,7 +24,12 @@ class MainActivity : AppCompatActivity() {
         GlobalScope.launch(context = Dispatchers.Main) {
             delay(300)
             smClock.setDayBreakAndNightFallHourMin(HourMin(5, 30), HourMin(18, 37))
-                .start()
+                .apply {
+                    onTimeTicked = {
+                        Logger.log("time ticked =>")
+                    }
+                    start()
+                }
         }
     }
 }

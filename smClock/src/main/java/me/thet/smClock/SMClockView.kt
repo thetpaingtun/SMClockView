@@ -88,6 +88,7 @@ class SMClockView @JvmOverloads constructor(
 
     private var pCenter: PointF
 
+    var onTimeTicked: (() -> Unit)? = null
 
     init {
         mTimeReceiver = TimeTickReceiver()
@@ -492,6 +493,8 @@ class SMClockView @JvmOverloads constructor(
             if (!mStart) {
                 return
             }
+
+            onTimeTicked?.invoke()
 
             val delta = getCurrentDegreePerMin()
             val period = getCurrentPeriod()
