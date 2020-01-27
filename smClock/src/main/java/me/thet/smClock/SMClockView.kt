@@ -74,7 +74,11 @@ class SMClockView @JvmOverloads constructor(
     private var mSunPositionCal: SunPositionCalculator
 
     private lateinit var mClockTime: String
-    private var mClockLabel: String
+    var mClockLabel: String = ""
+        set(label) {
+            field = label
+            invalidate()
+        }
 
     private var mLargeCircleColor: Int
     private var mClockColor: Int
@@ -104,8 +108,6 @@ class SMClockView @JvmOverloads constructor(
         mClockSubLabelColor = getColor(R.color.primaryDark)
         mSmallCircleColor = getColor(R.color.primaryDark)
         mDashLineColor = getColor(R.color.primaryDarkTransparent)
-
-        mClockLabel = ""
 
         retrieveAttrs(attrs)
 

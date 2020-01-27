@@ -30,6 +30,12 @@ class MainActivity : AppCompatActivity() {
                     }
                     start()
                 }
+
+            delay(1000)
+            smClock.mClockLabel = "LABEL 1"
+
+            delay(1000)
+            smClock.mClockLabel = "LABEL 2"
         }
     }
 }
