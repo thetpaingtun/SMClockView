@@ -10,8 +10,8 @@ android {
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 29
-        versionCode 4
-        versionName "1.1.2"
+        versionCode 5
+        versionName "1.1.3"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
@@ -44,7 +44,7 @@ publish {
     repoName = "SMClockView"
     groupId = "me.thet.smClock"
     artifactId = "SMClockView"
-    publishVersion = "1.1.2"
+    publishVersion = "1.1.3"
     desc = "A clock view that show current sun or moon position"
     website = "https://github.com/thetpaingtun/SMClockView"
 
