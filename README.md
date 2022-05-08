@@ -1,5 +1,5 @@
 # SMClockView [![Build Status](https://travis-ci.org/thetpaingtun/SMClockView.svg?branch=master)](https://travis-ci.org/thetpaingtun/SMClockView)
-Clock that show current sun or moon position
+Clock that show current sun or moon position. Used in the [App](https://play.google.com/store/apps/details?id=com.gmail.thetpaingtun93.myanmarprayertime) 
 
 <img src="sm.gif" height="540" width="300"/>
 
